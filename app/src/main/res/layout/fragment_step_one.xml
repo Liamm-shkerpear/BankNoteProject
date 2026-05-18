@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingHorizontal="16dp">
+
+    <TextView
+        android:id="@+id/tvQuesTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/be_vietnam_pro_medium"
+        android:text="@string/step1_ques_title"
+        android:textAlignment="center"
+        android:textColor="@color/teal_dark"
+        android:textFontWeight="500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="28" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBanknote"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_option_item"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/clCoin"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuesTitle">
+
+        <ImageView
+            android:id="@+id/ivBanknote"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/money"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBanknoteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/be_vietnam_pro_semibold"
+            android:text="@string/banknote"
+            android:textColor="@color/navy_dark"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvBanknoteDesc"
+            app:layout_constraintStart_toEndOf="@+id/ivBanknote"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:targetApi="28" />
+
+        <TextView
+            android:id="@+id/tvBanknoteDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:text="@string/banknote_des"
+            android:textColor="@color/teal_dark"
+            android:textFontWeight="400"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivBanknote"
+            app:layout_constraintTop_toBottomOf="@+id/tvBanknoteTitle"
+            tools:targetApi="28" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCoin"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/bg_option_item"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/clCheck"
+        app:layout_constraintTop_toBottomOf="@+id/clBanknote">
+
+        <ImageView
+            android:id="@+id/ivCoin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/coin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCoinTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/be_vietnam_pro_semibold"
+            android:text="@string/coin_title"
+            android:textColor="@color/navy_dark"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvCoinDesc"
+            app:layout_constraintStart_toEndOf="@+id/ivCoin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:targetApi="28" />
+
+        <TextView
+            android:id="@+id/tvCoinDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:text="@string/coin_des"
+            android:textColor="@color/teal_dark"
+            android:textFontWeight="400"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivCoin"
+            app:layout_constraintTop_toBottomOf="@+id/tvCoinTitle"
+            tools:targetApi="28" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBoth"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_option_item"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/clCoin">
+
+        <ImageView
+            android:id="@+id/ivBoth"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/both"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBothTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/be_vietnam_pro_semibold"
+            android:text="@string/both_title"
+            android:textColor="@color/navy_dark"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvBothDesc"
+            app:layout_constraintStart_toEndOf="@+id/ivBoth"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:targetApi="28" />
+
+        <TextView
+            android:id="@+id/tvBothDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:text="@string/both_des"
+            android:textColor="@color/teal_dark"
+            android:textFontWeight="400"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivBoth"
+            app:layout_constraintTop_toBottomOf="@+id/tvBothTitle"
+            tools:targetApi="28" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

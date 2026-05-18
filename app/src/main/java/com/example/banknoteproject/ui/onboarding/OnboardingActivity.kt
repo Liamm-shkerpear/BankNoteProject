@@ -1,12 +1,95 @@
 package com.example.banknoteproject.ui.onboarding
 
+import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.banknoteproject.R
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.viewpager2.widget.ViewPager2
+import com.example.banknoteproject.data.domain.entities.OnboardingQuiz
+import com.example.banknoteproject.databinding.ActivityOnboardingBinding
+import com.example.banknoteproject.ui.home.HomeScreenActivity
+import com.example.banknoteproject.ui.onboarding.adapter.OnboardingAdapter
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.jvm.java
 
 class OnboardingActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityOnboardingBinding
+    private val viewModel: OnboardingViewModel by viewModel()
+    private lateinit var onboardingAdapter: OnboardingAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_onboarding)
+        binding = ActivityOnboardingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        initView()
+        initClickListener()
+        bindViewModel()
+    }
+
+    private fun initView() {
+        onboardingAdapter = OnboardingAdapter(this)
+        binding.vpOnboarding.adapter = onboardingAdapter
+        binding.vpOnboarding.isUserInputEnabled = false
+        binding.vpOnboarding.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                updateProgress(position)
+                validateNextButton(viewModel.onboardingData.value, position)
+            }
+        })
+    }
+
+    private fun initClickListener() {
+        binding.btnNext.setOnClickListener {
+            val currentItem = binding.vpOnboarding.currentItem
+            if (currentItem < 2) {
+                binding.vpOnboarding.currentItem = currentItem + 1
+            } else {
+                viewModel.insertOnboardingData()
+                navigateToHomeScreen()
+            }
+        }
+    }
+
+    private fun bindViewModel() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.onboardingData.collect { quizState ->
+                    validateNextButton(quizState, binding.vpOnboarding.currentItem)
+                }
+            }
+        }
+    }
+
+    private fun updateProgress(position: Int) {
+        val targetProgress = ((position + 1) * 100) / 3
+        ObjectAnimator.ofInt(
+            binding.pbOnboarding, "progress",
+            binding.pbOnboarding.progress, targetProgress
+        ).apply {
+            duration = 500
+            start()
+        }
+    }
+
+    private fun validateNextButton(state: OnboardingQuiz, currentPosition: Int) {
+        val isAnswered = when (currentPosition) {
+            0 -> state.stepOne.isNotEmpty()
+            1 -> state.stepTwo.isNotEmpty()
+            2 -> state.stepThree.isNotEmpty()
+            else -> false
+        }
+        binding.btnNext.isEnabled = isAnswered
+    }
+
+    private fun navigateToHomeScreen() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

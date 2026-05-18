@@ -3,4 +3,22 @@
     <string name="splash_bg">splash_bg</string>
     <string name="splash_app_name">Banknote Identifier</string>
     <string name="next_button">NEXT</string>
+    <string name="step1_ques_title">What kind of stones attract \nyou most?</string>
+    <string name="todo">TODO</string>
+    <string name="banknote">Banknote</string>
+    <string name="banknote_des"><![CDATA[Paper bills & collectible notes]]></string>
+    <string name="coin_title">Coin</string>
+    <string name="coin_des"><![CDATA[Modern & old coins]]></string>
+    <string name="both_title">Both</string>
+    <string name="both_des">I collect everything.</string>
+    <string name="step2_ques_title">What do you want to use the \napp for?</string>
+    <string name="learn_title">Learn about currencies</string>
+    <string name="check_title">Check collector value</string>
+    <string name="identify_coin_title">Identify coins</string>
+    <string name="identify_banknote_title">Identify banknotes</string>
+    <string name="simple_title"><![CDATA[Simple & easy to read]]></string>
+    <string name="focus_title"><![CDATA[Focus on history & origin]]></string>
+    <string name="step3_ques_title">How do you prefer your \nresults displayed?</string>
+    <string name="detail_title">Full detailed info</string>
+    <string name="focus_on_title">Focus on collector value</string>
 </resources>

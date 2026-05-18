@@ -6,4 +6,6 @@
     <color name="mint_aqua">#91DDCE</color>
     <color name="mint_aqua_light">#E0FFF9</color>
     <color name="teal_dark">#37767B</color>
+    <color name="gray_light">#D4D4D4</color>
+    <color name="navy_dark">#15242E</color>
 </resources>
