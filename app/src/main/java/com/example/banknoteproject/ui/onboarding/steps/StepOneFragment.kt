@@ -5,13 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.banknoteproject.databinding.FragmentStepOneBinding
 import com.example.banknoteproject.ui.onboarding.OnboardingViewModel
-import com.example.banknoteproject.utils.AppConstants
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class StepOneFragment : Fragment() {
@@ -39,29 +34,26 @@ class StepOneFragment : Fragment() {
     }
 
     private fun initClickListener() {
-        binding.clBanknote.setOnClickListener { viewModel.updateStepOne(AppConstants.BANKNOTE) }
-        binding.clCoin.setOnClickListener { viewModel.updateStepOne(AppConstants.COIN) }
-        binding.clBoth.setOnClickListener { viewModel.updateStepOne(AppConstants.BOTH) }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.onboardingData.collect { state ->
-                    updateUI(state.stepOne)
-                }
-            }
+        binding.clBanknote.setOnClickListener {
+            updateUI(binding.clBanknote)
+            viewModel.markStepOneAnswered()
+        }
+        binding.clCoin.setOnClickListener {
+            updateUI(binding.clCoin)
+            viewModel.markStepOneAnswered()
+        }
+        binding.clBoth.setOnClickListener {
+            updateUI(binding.clBoth)
+            viewModel.markStepOneAnswered()
         }
     }
 
 
-    private fun updateUI(selectedOption: String) {
+    private fun updateUI(selectedOption: View) {
         binding.clBanknote.isSelected = false
         binding.clCoin.isSelected = false
         binding.clBoth.isSelected = false
 
-        when (selectedOption) {
-            AppConstants.BANKNOTE  -> binding.clBanknote.isSelected = true
-            AppConstants.COIN -> binding.clCoin.isSelected = true
-            AppConstants.BOTH -> binding.clBoth.isSelected = true
-        }
+        selectedOption.isSelected = true
     }
 }

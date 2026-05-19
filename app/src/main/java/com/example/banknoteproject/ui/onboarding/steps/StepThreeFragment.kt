@@ -39,31 +39,31 @@ class StepThreeFragment : Fragment() {
     }
 
     private fun initClickListener() {
-        binding.clSimple.setOnClickListener { viewModel.updateStepThree(AppConstants.SIMPLE) }
-        binding.clDetail.setOnClickListener { viewModel.updateStepThree(AppConstants.DETAIL) }
-        binding.clValue.setOnClickListener { viewModel.updateStepThree(AppConstants.VALUE) }
-        binding.clFocus.setOnClickListener { viewModel.updateStepThree(AppConstants.FOCUS) }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.onboardingData.collect { state ->
-                    updateUI(state.stepThree)
-                }
-            }
+        binding.clSimple.setOnClickListener {
+            updateUI(binding.clSimple)
+            viewModel.markStepThreeAnswered()
         }
+        binding.clDetail.setOnClickListener {
+            updateUI(binding.clDetail)
+            viewModel.markStepThreeAnswered()
+        }
+        binding.clValue.setOnClickListener {
+            updateUI(binding.clValue)
+            viewModel.markStepThreeAnswered()
+        }
+        binding.clFocus.setOnClickListener {
+            updateUI(binding.clFocus)
+            viewModel.markStepThreeAnswered()
+        }
+
     }
 
-    private fun updateUI(selectedOption: String) {
+    private fun updateUI(selectedOption: View) {
         binding.clSimple.isSelected = false
         binding.clDetail.isSelected = false
         binding.clValue.isSelected = false
         binding.clFocus.isSelected = false
 
-        when (selectedOption) {
-            AppConstants.SIMPLE -> binding.clSimple.isSelected = true
-            AppConstants.DETAIL -> binding.clDetail.isSelected = true
-            AppConstants.VALUE -> binding.clValue.isSelected = true
-            AppConstants.FOCUS -> binding.clFocus.isSelected = true
-        }
+        selectedOption.isSelected = true
     }
 }

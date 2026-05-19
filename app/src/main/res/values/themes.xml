@@ -5,5 +5,23 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="CustomSearchViewTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="editTextColor">@color/teal_dark</item>
+        <item name="android:textColorHint">#7337767B</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/be_vietnam_pro_medium</item>
+    </style>
+
+    <style name="BottomNavTextStyle" parent="TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/be_vietnam_pro</item>
+        <item name="android:fontFamily">@font/be_vietnam_pro</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TransparentActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+    </style>
+
     <style name="Theme.BankNoteProject" parent="Base.Theme.BankNoteProject" />
 </resources>

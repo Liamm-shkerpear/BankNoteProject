@@ -39,31 +39,30 @@ class StepTwoFragment : Fragment() {
     }
 
     private fun initClickListener() {
-        binding.clBanknote.setOnClickListener { viewModel.updateStepTwo(AppConstants.BANKNOTE_IDENTIFY) }
-        binding.clCoin.setOnClickListener { viewModel.updateStepTwo(AppConstants.COIN_IDENTIFY) }
-        binding.clCheck.setOnClickListener { viewModel.updateStepTwo(AppConstants.CHECK_VALUE) }
-        binding.clLearn.setOnClickListener { viewModel.updateStepTwo(AppConstants.LEARN) }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.onboardingData.collect { state ->
-                    updateUI(state.stepTwo)
-                }
-            }
+        binding.clBanknote.setOnClickListener {
+            updateUI(binding.clBanknote)
+            viewModel.markStepTwoAnswered()
+        }
+        binding.clCoin.setOnClickListener {
+            updateUI(binding.clCoin)
+            viewModel.markStepTwoAnswered()
+        }
+        binding.clCheck.setOnClickListener {
+            updateUI(binding.clCheck)
+            viewModel.markStepTwoAnswered()
+        }
+        binding.clLearn.setOnClickListener {
+            updateUI(binding.clLearn)
+            viewModel.markStepTwoAnswered()
         }
     }
 
-    private fun updateUI(selectedOption: String) {
+    private fun updateUI(selectedOption: View) {
         binding.clBanknote.isSelected = false
         binding.clCoin.isSelected = false
         binding.clCheck.isSelected = false
         binding.clLearn.isSelected = false
 
-        when (selectedOption) {
-            AppConstants.BANKNOTE_IDENTIFY -> binding.clBanknote.isSelected = true
-            AppConstants.COIN_IDENTIFY -> binding.clCoin.isSelected = true
-            AppConstants.CHECK_VALUE -> binding.clCheck.isSelected = true
-            AppConstants.LEARN -> binding.clLearn.isSelected = true
-        }
+        selectedOption.isSelected = true
     }
 }

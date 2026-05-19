@@ -21,4 +21,11 @@
     <string name="step3_ques_title">How do you prefer your \nresults displayed?</string>
     <string name="detail_title">Full detailed info</string>
     <string name="focus_on_title">Focus on collector value</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_collection">Collection</string>
+    <string name="home_title">Banknote Identifier</string>
+    <string name="banner_title">Know what\'s in your pocket</string>
+    <string name="banner_des">Tap here to recognize a collections</string>
+    <string name="tv_recent">Recent Banknote</string>
+    <string name="tv_random">Random banknote</string>
 </resources>

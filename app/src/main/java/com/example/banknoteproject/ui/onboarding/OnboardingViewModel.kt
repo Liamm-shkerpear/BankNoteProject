@@ -1,40 +1,23 @@
 package com.example.banknoteproject.ui.onboarding
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.banknoteproject.data.domain.entities.OnboardingQuiz
-import com.example.banknoteproject.data.domain.repository.OnboardingRepository
+import com.example.banknoteproject.data.domain.model.OnboardingClickState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
-class OnboardingViewModel(private val repository: OnboardingRepository) : ViewModel() {
-    private val _onboardingData = MutableStateFlow(OnboardingQuiz())
-    val onboardingData = _onboardingData.asStateFlow()
+class OnboardingViewModel : ViewModel() {
+    private val _uiState = MutableStateFlow(OnboardingClickState())
+    val uiState = _uiState.asStateFlow()
 
-    init {
-        viewModelScope.launch {
-            repository.getOnboardingData().collect { data ->
-                _onboardingData.value = data ?: OnboardingQuiz()
-            }
-        }
+    fun markStepOneAnswered() {
+        _uiState.value = _uiState.value.copy(isStepOneClick = true)
     }
 
-    fun updateStepOne(answer: String) {
-        _onboardingData.value = _onboardingData.value.copy(stepOne = answer)
-    }
-    fun updateStepTwo(answer: String) {
-        _onboardingData.value = _onboardingData.value.copy(stepTwo = answer)
-    }
-    fun updateStepThree(answer: String) {
-        _onboardingData.value = _onboardingData.value.copy(stepThree = answer)
+    fun markStepTwoAnswered() {
+        _uiState.value = _uiState.value.copy(isStepTwoClick = true)
     }
 
-    fun insertOnboardingData() {
-        _onboardingData.value = _onboardingData.value.copy(isCompleted = true)
-        viewModelScope.launch {
-            repository.insertOnboardingData(_onboardingData.value)
-        }
+    fun markStepThreeAnswered() {
+        _uiState.value = _uiState.value.copy(isStepThreeClick = true)
     }
-
 }
