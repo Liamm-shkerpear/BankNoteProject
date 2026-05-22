@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ivory"
+    tools:context=".ui.detail.DetailActivity">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="22dp"
+        android:contentDescription="@string/todo"
+        android:padding="16dp"
+        android:src="@drawable/ic_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHeaderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/be_vietnam_pro_semibold"
+        android:text="@string/detail_header"
+        android:textColor="@color/black"
+        android:textFontWeight="600"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="@+id/btnBack"
+        tools:targetApi="28" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="4dp">
+
+            <ImageView
+                android:id="@+id/ivDetailFront"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/image" />
+
+            <ImageView
+                android:id="@+id/ivDetailBack"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivDetailFront"
+                tools:src="@drawable/image" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCardTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivDetailBack">
+
+                <TextView
+                    android:id="@+id/tvDetailTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/be_vietnam_pro_semibold"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
+                    android:textFontWeight="600"
+                    android:textSize="16sp"
+                    tools:targetApi="28"
+                    tools:text="United states of america - USA 100 Dollar Banknote, 2017" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCardPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvCardTitle">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icPriceRef"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_money_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPriceHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_semibold"
+                        android:text="@string/ref_header"
+                        android:textColor="@color/navy_dark"
+                        android:textFontWeight="600"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icPriceRef"
+                        app:layout_constraintStart_toEndOf="@+id/icPriceRef"
+                        app:layout_constraintTop_toTopOf="@+id/icPriceRef"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/tvDetailPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_semibold"
+                        android:gravity="center"
+                        android:textColor="@color/teal_dark"
+                        android:textFontWeight="600"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/icPriceRef"
+                        tools:targetApi="28"
+                        tools:text="$200-$600" />
+
+                    <TextView
+                        android:id="@+id/tvYearLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:text="@string/year_lable"
+                        android:textFontWeight="500"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDetailPrice"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/tvYearValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:textFontWeight="500"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvYearLabel"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvYearLabel"
+                        tools:targetApi="28"
+                        tools:text="1945" />
+
+                    <TextView
+                        android:id="@+id/tvValueLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:text="@string/value_lable"
+                        android:textFontWeight="500"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvYearLabel"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/tvValueValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:textFontWeight="500"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvValueLabel"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvValueLabel"
+                        tools:targetApi="28"
+                        tools:text="100$" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCardDes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvCardPrice">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icDes"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_money_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvDescHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_semibold"
+                        android:text="@string/description_header"
+                        android:textColor="@color/navy_dark"
+                        android:textFontWeight="600"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icDes"
+                        app:layout_constraintStart_toEndOf="@+id/icDes"
+                        app:layout_constraintTop_toTopOf="@+id/icDes"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/tvDes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/navy_dark"
+                        android:textFontWeight="500"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/icDes"
+                        tools:targetApi="28"
+                        tools:text="Each Federal Reserve note includes identifiers that provide information about the note, such as designating the year in which the note's design was approved." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCardFeatures"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvCardDes">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icFeatureRef"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_money_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvFeatureHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_semibold"
+                        android:textFontWeight="600"
+                        android:text="@string/features_header"
+                        android:textColor="@color/navy_dark"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icFeatureRef"
+                        app:layout_constraintStart_toEndOf="@+id/icFeatureRef"
+                        app:layout_constraintTop_toTopOf="@+id/icFeatureRef"
+                        tools:targetApi="28" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFeatures"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/icFeatureRef"
+                        tools:itemCount="2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCardLettering"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvCardFeatures">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icLettering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_letter_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvLetteringHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/be_vietnam_pro_semibold"
+                        android:textFontWeight="600"
+                        android:text="@string/lettering_header"
+                        android:textColor="@color/navy_dark"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icLettering"
+                        app:layout_constraintStart_toEndOf="@+id/icLettering"
+                        app:layout_constraintTop_toTopOf="@+id/icLettering"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/tvLetteringContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:textFontWeight="500"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/navy_dark"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/icLettering"
+                        tools:text="Each Federal Reserve note includes identifiers that provide information about the note, such as designating the year in which the note's design was approved."
+                        tools:targetApi="28" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAdd"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="21dp"
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="@color/mint_aqua_40"
+                android:fontFamily="@font/be_vietnam_pro_semibold"
+                android:text="@string/add_to_collection"
+                android:textColor="@color/teal_dark"
+                android:textFontWeight="600"
+                android:textSize="18sp"
+                app:cornerRadius="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/cvCardLettering"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:strokeColor="@color/teal_dark"
+                app:strokeWidth="1.5dp"
+                tools:targetApi="28" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

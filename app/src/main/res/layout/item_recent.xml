@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="115dp"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    android:layout_marginEnd="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/vBackground"
+            android:layout_width="0dp"
+            android:layout_height="95dp"
+            android:background="@color/ivory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivFront"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="2dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/ivBack"
+            app:layout_constraintEnd_toEndOf="@+id/vBackground"
+            app:layout_constraintStart_toStartOf="@+id/vBackground"
+            app:layout_constraintTop_toTopOf="@+id/vBackground"
+            tools:src="@drawable/image" />
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="2dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/clTextContainer"
+            app:layout_constraintEnd_toEndOf="@+id/vBackground"
+            app:layout_constraintStart_toStartOf="@+id/vBackground"
+            app:layout_constraintTop_toBottomOf="@+id/ivFront"
+            tools:src="@drawable/image" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTextContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/bg_recent_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:gravity="center"
+                android:text="€ 15,000,00"
+                android:textColor="@color/navy_dark"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCountry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Australia square"
+                android:textColor="@color/teal_dark"
+                android:textFontWeight="400"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
