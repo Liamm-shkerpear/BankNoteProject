@@ -11,13 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.banknoteproject.databinding.ActivityOnboardingBinding
-import com.example.banknoteproject.ui.home.HomeScreenActivity
+import com.example.banknoteproject.ui.main.MainActivity
 import com.example.banknoteproject.ui.onboarding.adapter.OnboardingAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.jvm.java
 import androidx.core.content.edit
-import com.example.banknoteproject.data.domain.model.OnboardingClickState
+import com.example.banknoteproject.data.domain.entities.OnboardingClickState
 
 class OnboardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding
@@ -96,7 +96,7 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun navigateToHomeScreen() {
-        val intent = Intent(this, HomeScreenActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

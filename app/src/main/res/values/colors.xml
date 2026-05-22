@@ -10,4 +10,7 @@
     <color name="navy_dark">#15242E</color>
     <color name="ivory">#FFFBED</color>
     <color name="gray_medium">#ACACAC</color>
+    <color name="light_gray">#B9B9B9</color>
+    <color name="light_sky_blue">#C7F3FF</color>
+    <color name="mint_aqua_40">#6691DDCE</color>
 </resources>

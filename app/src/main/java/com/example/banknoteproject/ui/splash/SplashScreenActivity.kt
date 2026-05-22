@@ -9,7 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.banknoteproject.databinding.ActivitySplashScreenBinding
-import com.example.banknoteproject.ui.home.HomeScreenActivity
+import com.example.banknoteproject.ui.main.MainActivity
 import com.example.banknoteproject.ui.onboarding.OnboardingActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,7 +38,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val sharedPref = getSharedPreferences("AppPreferences", MODE_PRIVATE)
             val isCompleted = sharedPref.getBoolean("isCompleted", false)
             if (isCompleted) {
-                startActivity(Intent(this@SplashScreenActivity, HomeScreenActivity::class.java))
+                startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             } else {
                 startActivity(Intent(this@SplashScreenActivity, OnboardingActivity::class.java))
             }

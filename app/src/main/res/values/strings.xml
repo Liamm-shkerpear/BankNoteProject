@@ -28,4 +28,13 @@
     <string name="banner_des">Tap here to recognize a collections</string>
     <string name="tv_recent">Recent Banknote</string>
     <string name="tv_random">Random banknote</string>
+    <string name="detail_header">Banknote Info</string>
+    <string name="ref_header">Reference Price</string>
+    <string name="year_lable">Year</string>
+    <string name="value_lable">Value</string>
+    <string name="description_header">Description</string>
+    <string name="features_header">Physical features</string>
+    <string name="lettering_header">Lettering</string>
+    <string name="add_to_collection">Add to Collection</string>
+    <string name="collection_title">Collections</string>
 </resources>

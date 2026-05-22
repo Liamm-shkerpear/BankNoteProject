@@ -1,7 +1,7 @@
 package com.example.banknoteproject.ui.onboarding
 
 import androidx.lifecycle.ViewModel
-import com.example.banknoteproject.data.domain.model.OnboardingClickState
+import com.example.banknoteproject.data.domain.entities.OnboardingClickState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

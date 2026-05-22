@@ -1,9 +1,9 @@
 package com.example.banknoteproject.di.module
 
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.singleOf
+import com.example.banknoteproject.data.domain.repository.HomeRepository
+import com.example.banknoteproject.data.repository.HomeRepositoryImpl
 import org.koin.dsl.module
 
 val repositoryModule = module {
-
+    single< HomeRepository> { HomeRepositoryImpl(get()) }
 }
