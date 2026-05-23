@@ -1,22 +1,29 @@
 package com.example.banknoteproject.ui.detail
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.banknoteproject.R
 import com.example.banknoteproject.data.domain.entities.BanknoteItem
 import com.example.banknoteproject.data.domain.entities.Feature
 import com.example.banknoteproject.databinding.ActivityDetailBinding
 import com.example.banknoteproject.ui.detail.adapter.FeatureAdapter
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
+    private val viewModel: DetailViewModel by viewModel()
     private val featureAdapter by lazy {
         FeatureAdapter()
     }
+    private var currentItem: BanknoteItem? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -24,6 +31,7 @@ class DetailActivity : AppCompatActivity() {
 
         initView()
         initListener()
+        bindViewModel()
     }
 
     private fun initView() {
@@ -32,6 +40,7 @@ class DetailActivity : AppCompatActivity() {
         } else {
             intent.getParcelableExtra("EXTRA_DATA")
         }
+        currentItem = item
         item?.run {
             /* thumb */
             val backupImage = R.drawable.image
@@ -105,6 +114,7 @@ class DetailActivity : AppCompatActivity() {
                 else -> "No lettering available"
             }
             binding.tvLetteringContent.text = displayLet
+            viewModel.checkCollection(item.id)
         } ?:showError()
     }
     private fun showError() {
@@ -113,6 +123,15 @@ class DetailActivity : AppCompatActivity() {
     }
     private fun initListener() {
         initBackButton()
+        initAddButton()
+    }
+
+    private fun bindViewModel() {
+        lifecycleScope.launch {
+            viewModel.isCollection.collect { isSaved ->
+                updateButtonUI(isSaved)
+            }
+        }
     }
 
     private fun initBackButton() {
@@ -120,4 +139,29 @@ class DetailActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun initAddButton() {
+        binding.btnAdd.setOnClickListener {
+            currentItem?.let { item ->
+                viewModel.handleCollectionClick(item)
+            }
+        }
+    }
+
+    private fun updateButtonUI(isSaved: Boolean) {
+        if (isSaved) {
+            // Trạng thái đã lưu -> Hiện nút Xóa (Đổi màu đỏ nhạt để cảnh báo)
+            binding.btnAdd.text = "Remove from Collection"
+            binding.btnAdd.setTextColor(Color.parseColor("#E53935")) // Đỏ
+            binding.btnAdd.setStrokeColorResource(android.R.color.holo_red_dark)
+            binding.btnAdd.backgroundTintList = ContextCompat.getColorStateList(this, R.color.white)
+        } else {
+            // Trạng thái chưa lưu -> Hiện nút Add (Màu Mint như cũ của bạn)
+            binding.btnAdd.text = "Add to Collection"
+            binding.btnAdd.setTextColor(ContextCompat.getColor(this, R.color.teal_dark))
+            binding.btnAdd.setStrokeColorResource(R.color.teal_dark)
+            binding.btnAdd.backgroundTintList = ContextCompat.getColorStateList(this, R.color.mint_aqua_40)
+        }
+    }
+
 }
