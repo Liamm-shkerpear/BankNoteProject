@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -41,6 +43,7 @@ class CollectionFragment: Fragment() {
 
         initView()
         bindViewModel()
+        initListener()
     }
 
     override fun onDestroyView() {
@@ -53,6 +56,23 @@ class CollectionFragment: Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = collectionAdapter
         }
+    }
+
+    private fun initListener() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val keyword = query ?: ""
+                viewModel.collectionSearch(keyword)
+                binding.searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val keyword = newText ?: ""
+                viewModel.collectionSearch(keyword)
+                return true
+            }
+        })
     }
 
     private fun bindViewModel() {

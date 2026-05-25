@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.banknoteproject.R
 import com.example.banknoteproject.data.domain.entities.BanknoteItem
+import com.example.banknoteproject.data.domain.entities.BanknoteResponse
 import com.example.banknoteproject.data.domain.entities.Feature
 import com.example.banknoteproject.databinding.ActivityDetailBinding
 import com.example.banknoteproject.ui.detail.adapter.FeatureAdapter

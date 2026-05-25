@@ -15,8 +15,10 @@ import com.example.banknoteproject.databinding.FragmentHomeBinding
 import com.example.banknoteproject.ui.detail.DetailActivity
 import com.example.banknoteproject.ui.home.adapter.RandomItemAdapter
 import com.example.banknoteproject.ui.home.adapter.RecentItemAdapter
+import com.example.banknoteproject.ui.search.SearchActivity
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.jvm.java
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -45,6 +47,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initListener()
     }
 
     override fun onDestroyView() {
@@ -54,22 +57,31 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         binding.rvRecent.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = recentItemAdapter
         }
         binding.rvRandomBanknote.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = randomItemAdapter
         }
         observeData()
         viewModel.getRecentData()
     }
 
+    private fun initListener() {
+        binding.cvSearchBar.setOnClickListener {
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.recentData.collect { banknoteItems ->
-                    if(banknoteItems.isNotEmpty()) {
+                    if (banknoteItems.isNotEmpty()) {
                         recentItemAdapter.submitList(banknoteItems)
                     }
                 }
@@ -78,7 +90,8 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.randomData.collect { banknoteItems ->
-                    randomItemAdapter.submitList(banknoteItems)                }
+                    randomItemAdapter.submitList(banknoteItems)
+                }
             }
         }
     }

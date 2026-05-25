@@ -20,5 +20,12 @@ interface BanknoteApi {
         @Path("id") id: String,
         @Query("debug") debug: Boolean = true
     ) : Response<BanknoteItem>
+
+    @GET("banknotes-search")
+    suspend fun searchItems(
+        @Query("title") title: String,
+        @Query("page") page: Int = 0,
+        @Query("debug") debug: Boolean = true
+    ) : Response<BanknoteResponse>
 }
 

@@ -1,5 +1,6 @@
 package com.example.banknoteproject.di.module
 
+import com.example.banknoteproject.ui.search.SearchViewModel
 import com.example.banknoteproject.ui.collection.CollectionViewModel
 import com.example.banknoteproject.ui.detail.DetailViewModel
 import com.example.banknoteproject.ui.home.HomeViewModel
@@ -12,5 +13,7 @@ val viewModelModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::DetailViewModel)
     viewModelOf(::CollectionViewModel)
+    viewModelOf(::SearchViewModel)
+
 }
 
