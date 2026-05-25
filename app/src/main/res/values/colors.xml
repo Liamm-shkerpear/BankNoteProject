@@ -13,4 +13,5 @@
     <color name="light_gray">#B9B9B9</color>
     <color name="light_sky_blue">#C7F3FF</color>
     <color name="mint_aqua_40">#6691DDCE</color>
+    <color name="error_red">#E53935</color>
 </resources>

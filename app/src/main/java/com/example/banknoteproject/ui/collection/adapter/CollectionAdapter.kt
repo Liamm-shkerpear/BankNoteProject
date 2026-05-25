@@ -16,11 +16,12 @@ class CollectionAdapter(
     inner class ViewHolder(val binding: ItemCollectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BanknoteItem) {
+            /* title */
             binding.tvName.text = item.title
-
+            /* year */
             val year = item.features?.find { it.title.contains("Year", ignoreCase = true) }?.value
             binding.tvYear.text = year ?: "Unknown year"
-
+            /* thumb */
             val backupImage = R.drawable.image
             val image = item.images ?: emptyList()
             if (image.isNotEmpty()) {

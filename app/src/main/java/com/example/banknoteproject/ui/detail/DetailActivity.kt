@@ -1,11 +1,8 @@
 package com.example.banknoteproject.ui.detail
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.banknoteproject.R
@@ -42,85 +39,12 @@ class DetailActivity : AppCompatActivity() {
         }
         currentItem = item
         item?.run {
-            /* thumb */
-            val backupImage = R.drawable.image
-            val image = item.images ?: emptyList()
-            if (image.isNotEmpty()) {
-                Glide.with(binding.root.context)
-                    .load(image[0])
-                    .error(backupImage)
-                    .into(binding.ivDetailFront)
-            } else {
-                binding.ivDetailFront.setImageResource(backupImage)
-            }
-            if (image.isNotEmpty()) {
-                Glide.with(binding.root.context)
-                    .load(image[1])
-                    .error(backupImage)
-                    .into(binding.ivDetailBack)
-            } else {
-                binding.ivDetailBack.setImageResource(backupImage)
-            }
-            /* title */
-            binding.tvDetailTitle.text = item.title
-            /* price */
-            val price = item.pricing?.filter { it.price.isNotBlank() }
-            val displayPrice = when {
-                price.isNullOrEmpty() -> "$ 0"
-                price.size == 1 -> price[0].price
-                else -> "${price[0].price} - ${price[price.lastIndex].price}"
-            }
-            binding.tvDetailPrice.text = displayPrice
-            /* year */
-            val year = item.features?.find {
-                it.title.contains("Year", ignoreCase = true)
-            }
-            binding.tvYearValue.text = year?.value ?: "Unknown year"
-            /* value */
-            val value = item.features?.find {
-                it.title.contains("Value", ignoreCase = true)
-            }
-            binding.tvValueValue.text = value?.value ?: "Unknown value"
-            /* description */
-            val obvDes = item.obverse?.description?.takeIf { it.isNotBlank() }?.trim()
-            val revDes = item.reverse?.description?.takeIf { it.isNotBlank() }?.trim()
-            val checkObv = !obvDes.isNullOrBlank()
-            val checkRev = !revDes.isNullOrBlank()
-            val displayDes = when {
-                checkObv && checkRev -> "$obvDes\n$revDes"
-                checkObv -> obvDes
-                checkRev -> revDes
-                else -> "No description available"
-            }
-            binding.tvDes.text = displayDes
-            /* feature */
-            binding.rvFeatures.adapter = featureAdapter
-            val featureList = item.features ?: emptyList()
-            if (featureList.isNotEmpty()) {
-                featureAdapter.submitList(featureList)
-            } else {
-                val emptyItem = Feature(title = "", value = "No data info")
-                featureAdapter.submitList(listOf(emptyItem))
-            }
-            /* lettering */
-            val obvLet = item.obverse?.lettering?.takeIf { it.isNotBlank() }?.trim()
-            val revLet = item.reverse?.lettering?.takeIf { it.isNotBlank() }?.trim()
-            val checkObvLet = !obvLet.isNullOrBlank()
-            val checkRevLet = !revLet.isNullOrBlank()
-            val displayLet = when {
-                checkObvLet && checkRevLet -> "$obvLet\n$revLet"
-                checkObvLet -> obvLet
-                checkRevLet -> revLet
-                else -> "No lettering available"
-            }
-            binding.tvLetteringContent.text = displayLet
+            bindUI(item)
             viewModel.checkCollection(item.id)
-        } ?:showError()
+            viewModel.getItemDetails(item.id)
+        }
     }
-    private fun showError() {
-        Toast.makeText(this, "Không thể tải thông tin chi tiết!", Toast.LENGTH_SHORT).show()
-        finish()
-    }
+
     private fun initListener() {
         initBackButton()
         initAddButton()
@@ -130,6 +54,14 @@ class DetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.isCollection.collect { isSaved ->
                 updateButtonUI(isSaved)
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.detailData.collect { apiItem ->
+                apiItem?.let {
+                    currentItem = apiItem
+                    bindUI(apiItem)
+                }
             }
         }
     }
@@ -149,19 +81,83 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun updateButtonUI(isSaved: Boolean) {
-        if (isSaved) {
-            // Trạng thái đã lưu -> Hiện nút Xóa (Đổi màu đỏ nhạt để cảnh báo)
-            binding.btnAdd.text = "Remove from Collection"
-            binding.btnAdd.setTextColor(Color.parseColor("#E53935")) // Đỏ
-            binding.btnAdd.setStrokeColorResource(android.R.color.holo_red_dark)
-            binding.btnAdd.backgroundTintList = ContextCompat.getColorStateList(this, R.color.white)
+        binding.btnAdd.isChecked = isSaved
+        binding.btnAdd.text = if (isSaved) "Remove from collection" else "Add to collection"
+    }
+
+    private fun bindUI(item: BanknoteItem) {
+        /* thumb */
+        val backupImage = R.drawable.image
+        val image = item.images ?: emptyList()
+        if (image.isNotEmpty()) {
+            Glide.with(binding.root.context)
+                .load(image[0])
+                .error(backupImage)
+                .into(binding.ivDetailFront)
         } else {
-            // Trạng thái chưa lưu -> Hiện nút Add (Màu Mint như cũ của bạn)
-            binding.btnAdd.text = "Add to Collection"
-            binding.btnAdd.setTextColor(ContextCompat.getColor(this, R.color.teal_dark))
-            binding.btnAdd.setStrokeColorResource(R.color.teal_dark)
-            binding.btnAdd.backgroundTintList = ContextCompat.getColorStateList(this, R.color.mint_aqua_40)
+            binding.ivDetailFront.setImageResource(backupImage)
         }
+        if (image.isNotEmpty()) {
+            Glide.with(binding.root.context)
+                .load(image[1])
+                .error(backupImage)
+                .into(binding.ivDetailBack)
+        } else {
+            binding.ivDetailBack.setImageResource(backupImage)
+        }
+        /* title */
+        binding.tvDetailTitle.text = item.title
+        /* price */
+        val price = item.pricing?.filter { it.price.isNotBlank() }
+        val displayPrice = when {
+            price.isNullOrEmpty() -> "$ 0"
+            price.size == 1 -> price[0].price
+            else -> "${price[0].price} - ${price[price.lastIndex].price}"
+        }
+        binding.tvDetailPrice.text = displayPrice
+        /* year */
+        val year = item.features?.find {
+            it.title.contains("Year", ignoreCase = true)
+        }
+        binding.tvYearValue.text = year?.value ?: "Unknown year"
+        /* value */
+        val value = item.features?.find {
+            it.title.contains("Value", ignoreCase = true)
+        }
+        binding.tvValueValue.text = value?.value ?: "Unknown value"
+        /* description */
+        val obvDes = item.obverse?.description?.takeIf { it.isNotBlank() }?.trim()
+        val revDes = item.reverse?.description?.takeIf { it.isNotBlank() }?.trim()
+        val checkObv = !obvDes.isNullOrBlank()
+        val checkRev = !revDes.isNullOrBlank()
+        val displayDes = when {
+            checkObv && checkRev -> "$obvDes\n$revDes"
+            checkObv -> obvDes
+            checkRev -> revDes
+            else -> "No description available"
+        }
+        binding.tvDes.text = displayDes
+        /* feature */
+        binding.rvFeatures.adapter = featureAdapter
+        val featureList = item.features ?: emptyList()
+        if (featureList.isNotEmpty()) {
+            featureAdapter.submitList(featureList)
+        } else {
+            val emptyItem = Feature(title = "", value = "No data info")
+            featureAdapter.submitList(listOf(emptyItem))
+        }
+        /* lettering */
+        val obvLet = item.obverse?.lettering?.takeIf { it.isNotBlank() }?.trim()
+        val revLet = item.reverse?.lettering?.takeIf { it.isNotBlank() }?.trim()
+        val checkObvLet = !obvLet.isNullOrBlank()
+        val checkRevLet = !revLet.isNullOrBlank()
+        val displayLet = when {
+            checkObvLet && checkRevLet -> "$obvLet\n$revLet"
+            checkObvLet -> obvLet
+            checkRevLet -> revLet
+            else -> "No lettering available"
+        }
+        binding.tvLetteringContent.text = displayLet
     }
 
 }
