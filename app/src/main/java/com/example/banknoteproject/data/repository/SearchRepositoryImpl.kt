@@ -13,4 +13,8 @@ class SearchRepositoryImpl(private val api: BanknoteApi) : SearchRepository {
     ): Response<BanknoteResponse> {
         return api.searchItems(title, page, debug)
     }
+
+    override suspend fun getAllItems(page: Int, debug: Boolean): Response<BanknoteResponse> {
+        return api.getAllItems(page, debug)
+    }
 }

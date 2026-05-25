@@ -13,19 +13,25 @@ interface BanknoteApi {
     suspend fun getRecentItems(
         @Query("page") page: Int = 0,
         @Query("debug") debug: Boolean = true
-    ) : Response<BanknoteResponse>
+    ): Response<BanknoteResponse>
+
+    @GET("banknotes")
+    suspend fun getAllItems(
+        @Query("page") page: Int = 1,
+        @Query("debug") debug: Boolean = true
+    ): Response<BanknoteResponse>
 
     @GET("banknotes/{id}")
     suspend fun getItemDetails(
         @Path("id") id: String,
         @Query("debug") debug: Boolean = true
-    ) : Response<BanknoteItem>
+    ): Response<BanknoteItem>
 
     @GET("banknotes-search")
     suspend fun searchItems(
         @Query("title") title: String,
         @Query("page") page: Int = 0,
         @Query("debug") debug: Boolean = true
-    ) : Response<BanknoteResponse>
+    ): Response<BanknoteResponse>
 }
 
