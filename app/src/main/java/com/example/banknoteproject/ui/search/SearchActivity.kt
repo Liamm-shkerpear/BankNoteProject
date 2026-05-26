@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.banknoteproject.data.domain.entities.BanknoteItem
 import com.example.banknoteproject.databinding.ActivitySearchBinding
 import com.example.banknoteproject.ui.detail.DetailActivity
 import com.example.banknoteproject.ui.search.adapter.SearchAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
@@ -37,6 +41,24 @@ class SearchActivity : AppCompatActivity() {
         binding.rvSearch.apply {
             layoutManager = LinearLayoutManager(this@SearchActivity)
             adapter = searchAdapter
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (dy > 0) {
+                        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                        val visibleItemCount = layoutManager.childCount
+                        val totalCount = layoutManager.itemCount
+                        val firstItemPos = layoutManager.findFirstVisibleItemPosition()
+
+                        if ((visibleItemCount + firstItemPos) >= totalCount) {
+                            if (binding.searchView.query.isNullOrBlank()) {
+                                viewModel.getAllData(isRefresh = false)
+                            }
+                        }
+                    }
+                }
+            })
         }
     }
 
@@ -61,18 +83,22 @@ class SearchActivity : AppCompatActivity() {
 
     private fun bindViewModel() {
         lifecycleScope.launch {
-            viewModel.searchResults.collect { list ->
-                searchAdapter.submitList(list)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.searchResults.collect { list ->
+                    searchAdapter.submitList(list)
+                }
             }
         }
         lifecycleScope.launch {
-            viewModel.isEmpty.collect { empty ->
-                if (empty) {
-                    binding.clNoData.visibility = View.VISIBLE
-                    binding.rvSearch.visibility = View.GONE
-                } else {
-                    binding.clNoData.visibility = View.GONE
-                    binding.rvSearch.visibility = View.VISIBLE
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isEmpty.collect { empty ->
+                    if (empty) {
+                        binding.clNoData.visibility = View.VISIBLE
+                        binding.rvSearch.visibility = View.GONE
+                    } else {
+                        binding.clNoData.visibility = View.GONE
+                        binding.rvSearch.visibility = View.VISIBLE
+                    }
                 }
             }
         }

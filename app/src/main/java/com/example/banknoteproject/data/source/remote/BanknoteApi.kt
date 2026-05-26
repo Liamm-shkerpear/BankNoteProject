@@ -17,7 +17,7 @@ interface BanknoteApi {
 
     @GET("banknotes")
     suspend fun getAllItems(
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int,
         @Query("debug") debug: Boolean = true
     ): Response<BanknoteResponse>
 
