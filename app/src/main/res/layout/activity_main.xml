@@ -29,7 +29,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
-        android:layout_height="93dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         app:itemActiveIndicatorStyle="@style/TransparentActiveIndicator"
         app:itemIconTint="@color/nav_item_color"

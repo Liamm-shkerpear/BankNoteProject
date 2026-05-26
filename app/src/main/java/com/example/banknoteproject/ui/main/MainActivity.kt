@@ -2,20 +2,25 @@ package com.example.banknoteproject.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.banknoteproject.R
 import com.example.banknoteproject.databinding.ActivityMainBinding
 import com.example.banknoteproject.ui.main.adapter.MainAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewmodel by viewModel()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) {v, insets ->
+            val systemBar = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, systemBar.top, 0, 0)
+            binding.bottomNav.setPadding(0, 10, 0, systemBar.bottom)
+            insets
+        }
 
         initView()
     }
