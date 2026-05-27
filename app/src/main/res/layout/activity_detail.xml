@@ -391,7 +391,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="21dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="50dp"
                 android:fontFamily="@font/be_vietnam_pro_semibold"
                 android:text="@string/add_to_collection"
                 android:textColor="@color/text_stroke_btn_add"

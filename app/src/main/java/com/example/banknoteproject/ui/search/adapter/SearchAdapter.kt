@@ -1,6 +1,7 @@
 package com.example.banknoteproject.ui.search.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,6 +16,9 @@ class SearchAdapter(
 ): ListAdapter<BanknoteItem, SearchAdapter.ViewHolder>(DiffCallback()){
     inner class ViewHolder(val binding: ItemCollectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
+            init {
+                binding.vDashedLine.visibility = View.GONE
+            }
         fun bind(item: BanknoteItem) {
             /* title */
             binding.tvName.text = item.title
