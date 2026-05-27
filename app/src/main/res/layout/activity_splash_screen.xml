@@ -4,28 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<ImageView
-    android:id="@+id/ivBackground"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:contentDescription="@string/splash_bg"
-    android:scaleType="centerCrop"
-    android:src="@drawable/splash_bg"/>
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/splash_bg"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash_bg" />
 
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="156dp"
         android:layout_height="156dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/splash_logo"
-        android:scaleY="1.2"
         android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/splash_logo"
         app:layout_constraintBottom_toTopOf="@+id/tvAppName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ivBackground"
         app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/tvAppName"
@@ -33,8 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/be_vietnam_pro_bold"
-        android:text="@string/splash_app_name"
         android:includeFontPadding="false"
+        android:text="@string/splash_app_name"
         android:textColor="@color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,8 +48,8 @@
         android:layout_width="312dp"
         android:layout_height="8dp"
         android:layout_marginBottom="71dp"
-        android:progress="80"
         android:max="100"
+        android:progress="80"
         android:progressDrawable="@drawable/bg_splash_progress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

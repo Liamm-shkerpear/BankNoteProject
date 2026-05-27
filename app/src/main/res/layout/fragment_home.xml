@@ -42,12 +42,13 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/be_vietnam_pro_medium"
             android:gravity="center_vertical"
-            android:hint="Search Banknote"
+            android:hint="@string/home_search_hint"
             android:paddingHorizontal="16dp"
             android:textColorHint="#7337767B"
             android:textFontWeight="500"
             android:textSize="14sp"
-            app:drawableStartCompat="@drawable/ic_search_24" />
+            app:drawableStartCompat="@drawable/ic_search_24"
+            tools:targetApi="28" />
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.core.widget.NestedScrollView
@@ -92,7 +93,7 @@
                         android:layout_width="160dp"
                         android:layout_height="71dp"
                         android:contentDescription="@string/todo"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:src="@drawable/dollar"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

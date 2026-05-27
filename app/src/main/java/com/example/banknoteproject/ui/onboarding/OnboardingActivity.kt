@@ -18,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.jvm.java
 import androidx.core.content.edit
 import com.example.banknoteproject.data.domain.entities.OnboardingClickState
+import com.example.banknoteproject.utils.AppConstants
 
 class OnboardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding
@@ -45,7 +46,7 @@ class OnboardingActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 updateProgress(position)
-                validateNextButton(viewModel.uiState.value, position)
+                validateNextButton(viewModel.uiState.value)
             }
         })
     }
@@ -56,9 +57,10 @@ class OnboardingActivity : AppCompatActivity() {
             val currentItem = binding.vpOnboarding.currentItem
             if (currentItem < 2) {
                 binding.vpOnboarding.currentItem = currentItem + 1
+                viewModel.resetClickState()
             } else {
-                val sharePref = getSharedPreferences("AppPreferences", MODE_PRIVATE)
-                sharePref.edit { putBoolean("isCompleted", true) }
+                val sharePref = getSharedPreferences(AppConstants.APP_PREFERENCES, MODE_PRIVATE)
+                sharePref.edit { putBoolean(AppConstants.IS_COMPLETED, true) }
                 navigateToHomeScreen()
             }
         }
@@ -68,7 +70,7 @@ class OnboardingActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
-                    validateNextButton(state, binding.vpOnboarding.currentItem)
+                    validateNextButton(state)
                 }
             }
         }
@@ -77,7 +79,7 @@ class OnboardingActivity : AppCompatActivity() {
     private fun updateProgress(position: Int) {
         val targetProgress = ((position + 1) * 100) / 3
         ObjectAnimator.ofInt(
-            binding.pbOnboarding, "progress",
+            binding.pbOnboarding, AppConstants.PROGRESS,
             binding.pbOnboarding.progress, targetProgress
         ).apply {
             duration = 500
@@ -85,14 +87,8 @@ class OnboardingActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateNextButton(state: OnboardingClickState, currentPosition: Int) {
-        val isAnswered = when (currentPosition) {
-            0 -> state.isStepOneClick
-            1 -> state.isStepTwoClick
-            2 -> state.isStepThreeClick
-            else -> false
-        }
-        binding.btnNext.isEnabled = isAnswered
+    private fun validateNextButton(state: OnboardingClickState) {
+        binding.btnNext.isEnabled = state.isClick
     }
 
     private fun navigateToHomeScreen() {

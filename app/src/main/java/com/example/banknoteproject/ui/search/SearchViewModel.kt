@@ -39,9 +39,9 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
                     if (isRefresh) {
                         _searchResults.value = data
                     } else {
-                        _searchResults.value = _searchResults.value + data
+                        _searchResults.value += data
                     }
-                    if (data.size < 30 ) {
+                    if (data.size < 30) {
                         isLastPage = true
                     } else {
                         currentPage++
@@ -50,39 +50,64 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
                 }
                 isLoading = false
             } catch (e: Exception) {
+                Log.e("SearchViewModel", "Error: ", e)
                 isLoading = false
             }
         }
     }
 
-    fun searchItems(query: String) {
+    fun searchItems(query: String, isLoadMore: Boolean = false) {
         val validQuery = query.trim()
         if (validQuery.isBlank()) {
             getAllData(isRefresh = true)
             lastSearchQuery = ""
             return
         }
-        if (validQuery.equals(lastSearchQuery, ignoreCase = true)) {
+
+        val isNewQuery = !validQuery.equals(lastSearchQuery, ignoreCase = true)
+        if (isNewQuery) {
+            currentPage = 0
+            isLastPage = false
+            lastSearchQuery = validQuery
+        } else if (!isLoadMore) {
             return
         }
-        lastSearchQuery = validQuery
+
+        if (isLoading || (!isNewQuery && isLastPage)) return
+        isLoading = true
 
         viewModelScope.launch {
             try {
-                val response = repository.searchItems(title = validQuery)
+                val response = repository.searchItems(title = validQuery, page = currentPage)
                 if (response.isSuccessful) {
                     val data = response.body()?.data ?: emptyList()
-                    _searchResults.value = data
-                    _isEmpty.value = data.isEmpty()
+                    if (isNewQuery) {
+                        _searchResults.value = data
+                    } else {
+                        _searchResults.value += data
+                    }
+                    if (data.size < 30) {
+                        isLastPage = true
+                    } else {
+                        currentPage++
+                    }
+                    _isEmpty.value = _searchResults.value.isEmpty()
                 } else {
+                    if (isNewQuery) {
+                        _searchResults.value = emptyList()
+                        _isEmpty.value = true
+                    }
+                }
+                isLoading = false
+            } catch (e: Exception) {
+                if (isNewQuery) {
                     _searchResults.value = emptyList()
                     _isEmpty.value = true
                 }
-            } catch (e: Exception) {
-                _searchResults.value = emptyList()
-                _isEmpty.value = true
-                }
+                Log.e("SearchViewModel", "Error: ", e)
+                isLoading = false
             }
         }
     }
+}
 

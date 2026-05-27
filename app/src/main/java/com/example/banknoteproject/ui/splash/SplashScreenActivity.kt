@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.banknoteproject.databinding.ActivitySplashScreenBinding
 import com.example.banknoteproject.ui.main.MainActivity
 import com.example.banknoteproject.ui.onboarding.OnboardingActivity
+import com.example.banknoteproject.utils.AppConstants
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.jvm.java
@@ -28,15 +29,15 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        val animator = ObjectAnimator.ofInt(binding.progressBar, "progress", 0, 100)
-        animator.duration = 3000
+        val animator = ObjectAnimator.ofInt(binding.progressBar, AppConstants.PROGRESS, 0, 100)
+        animator.duration = AppConstants.SPLASH_DURATION
         animator.interpolator = DecelerateInterpolator()
         animator.start()
 
         lifecycleScope.launch {
-            delay(3000)
-            val sharedPref = getSharedPreferences("AppPreferences", MODE_PRIVATE)
-            val isCompleted = sharedPref.getBoolean("isCompleted", false)
+            delay(AppConstants.SPLASH_DURATION)
+            val sharedPref = getSharedPreferences(AppConstants.APP_PREFERENCES, MODE_PRIVATE)
+            val isCompleted = sharedPref.getBoolean(AppConstants.IS_COMPLETED, false)
             if (isCompleted) {
                 startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             } else {

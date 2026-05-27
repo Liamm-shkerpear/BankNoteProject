@@ -5,6 +5,6 @@ import retrofit2.Response
 
 
 interface SearchRepository {
-    suspend fun searchItems(title: String, page: Int = 0, debug: Boolean = true) : Response<BanknoteResponse>
-    suspend fun getAllItems(page: Int = 1, debug: Boolean = true) : Response<BanknoteResponse>
+    suspend fun searchItems(title: String, page: Int, debug: Boolean = true) : Response<BanknoteResponse>
+    suspend fun getAllItems(page: Int, debug: Boolean = true) : Response<BanknoteResponse>
 }

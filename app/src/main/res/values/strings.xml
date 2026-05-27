@@ -30,12 +30,16 @@
     <string name="tv_random">Random banknote</string>
     <string name="detail_header">Banknote Info</string>
     <string name="ref_header">Reference Price</string>
-    <string name="year_lable">Year</string>
-    <string name="value_lable">Value</string>
+    <string name="year_label">Year</string>
+    <string name="value_label">Value</string>
     <string name="description_header">Description</string>
     <string name="features_header">Physical features</string>
     <string name="lettering_header">Lettering</string>
     <string name="add_to_collection">Add to Collection</string>
     <string name="collection_title">Collections</string>
     <string name="search_title">Search</string>
+    <string name="recent_money">€ 15,000,00</string>
+    <string name="recent_country">Australia square</string>
+    <string name="home_search_hint">Search Banknote</string>
+    <string name="no_data">No data</string>
 </resources>

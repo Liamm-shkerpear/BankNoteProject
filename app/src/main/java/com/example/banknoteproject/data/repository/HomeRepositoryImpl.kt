@@ -8,7 +8,7 @@ import retrofit2.Response
 class HomeRepositoryImpl (
  private val api: BanknoteApi
 ) : HomeRepository {
-    override suspend fun getRecentData(page: Int, debug: Boolean): Response<BanknoteResponse> {
-        return api.getRecentItems(page, debug)
+    override suspend fun getHomeData(page: Int, debug: Boolean): Response<BanknoteResponse> {
+        return api.getHomeItems(page, debug)
     }
 }

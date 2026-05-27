@@ -7,10 +7,10 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.banknoteproject.R
 import com.example.banknoteproject.data.domain.entities.BanknoteItem
-import com.example.banknoteproject.data.domain.entities.BanknoteResponse
 import com.example.banknoteproject.data.domain.entities.Feature
 import com.example.banknoteproject.databinding.ActivityDetailBinding
 import com.example.banknoteproject.ui.detail.adapter.FeatureAdapter
+import com.example.banknoteproject.utils.AppConstants
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,9 +34,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
         val item = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("EXTRA_DATA", BanknoteItem::class.java)
+            intent.getParcelableExtra(AppConstants.EXTRA_DATA, BanknoteItem::class.java)
         } else {
-            intent.getParcelableExtra("EXTRA_DATA")
+            intent.getParcelableExtra(AppConstants.EXTRA_DATA)
         }
         currentItem = item
         item?.run {
@@ -92,7 +92,7 @@ class DetailActivity : AppCompatActivity() {
         val image = item.images ?: emptyList()
         if (image.isNotEmpty()) {
             Glide.with(binding.root.context)
-                .load(image[0])
+                .load(image.getOrNull(0) ?: backupImage)
                 .error(backupImage)
                 .into(binding.ivDetailFront)
         } else {
@@ -100,7 +100,7 @@ class DetailActivity : AppCompatActivity() {
         }
         if (image.isNotEmpty()) {
             Glide.with(binding.root.context)
-                .load(image[1])
+                .load(image.getOrNull(1) ?: backupImage)
                 .error(backupImage)
                 .into(binding.ivDetailBack)
         } else {

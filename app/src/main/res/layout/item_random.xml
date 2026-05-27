@@ -19,7 +19,8 @@
             android:id="@+id/ivFront"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:scaleType="centerCrop"
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/image" />
@@ -29,7 +30,8 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginTop="4dp"
-            android:scaleType="centerCrop"
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivFront"
@@ -42,14 +44,15 @@
             android:layout_marginStart="12dp"
             android:ellipsize="end"
             android:fontFamily="@font/be_vietnam_pro_semibold"
-            android:textFontWeight="600"
             android:maxLines="2"
             android:textColor="@color/black"
+            android:textFontWeight="600"
             android:textSize="14sp"
-             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivFront"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="1/4 Dolar \u0022Washington Silver Quarter\u0022" />
+            tools:targetApi="28"
+            tools:text="1/4 Dollar \u0022Washington Silver Quarter\u0022" />
 
         <TextView
             android:id="@+id/tvYear"
@@ -58,11 +61,12 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/be_vietnam_pro_medium"
             android:textColor="@color/light_gray"
-            android:textSize="12sp"
             android:textFontWeight="500"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:targetApi="28"
             tools:text="1932-1964" />
 
         <TextView
@@ -75,11 +79,12 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="4dp"
             android:textColor="#1A202C"
-            android:textSize="12sp"
             android:textFontWeight="600"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvYear"
+            tools:targetApi="28"
             tools:text="$ 12.6-16.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

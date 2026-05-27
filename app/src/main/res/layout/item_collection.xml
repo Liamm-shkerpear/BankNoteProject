@@ -23,9 +23,9 @@
             android:layout_height="35dp"
             android:contentDescription="@string/todo"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/ivBack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/ivBack"
             app:layout_constraintVertical_chainStyle="packed"
             tools:src="@drawable/image" />
 
@@ -36,9 +36,9 @@
             android:layout_marginTop="4dp"
             android:contentDescription="@string/todo"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivFront"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:src="@drawable/image" />
 
         <TextView
@@ -46,33 +46,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textFontWeight="600"
-            android:maxLines="2"
             android:ellipsize="end"
             android:fontFamily="@font/be_vietnam_pro_semibold"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textFontWeight="600"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/ivFront"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivFront"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:targetApi="28"
-            tools:text="1/4 Dolar “Washington Silver Quarter”"/>
+            tools:text="1/4 Dollar “Washington Silver Quarter”" />
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_gray"
             android:fontFamily="@font/be_vietnam_pro_medium"
+            android:textColor="@color/light_gray"
             android:textFontWeight="500"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvName"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             tools:targetApi="28"
-            tools:text="1932-1964"/>
+            tools:text="1932-1964" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

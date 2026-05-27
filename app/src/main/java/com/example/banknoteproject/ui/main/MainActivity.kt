@@ -15,13 +15,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) {v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBar = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(0, systemBar.top, 0, 0)
             binding.bottomNav.setPadding(0, 10, 0, systemBar.bottom)
             insets
         }
-
         initView()
     }
 
@@ -39,7 +38,5 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
-
     }
-
 }

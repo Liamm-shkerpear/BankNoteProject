@@ -15,13 +15,13 @@ class HomeViewModel(private val repository: HomeRepository): ViewModel() {
     private val _randomData = MutableStateFlow<List<BanknoteItem>>(emptyList())
     val randomData = _randomData.asStateFlow()
 
-    fun getRecentData() {
+    fun getHomeData() {
         viewModelScope.launch {
             try {
-                val response = repository.getRecentData()
+                val response = repository.getHomeData()
                 if (response.isSuccessful) {
                     val allData = response.body()?.data ?: emptyList()
-                    _recentData.value = allData.take(10)
+                    _recentData.value = allData.take (10)
                     _randomData.value = allData.shuffled().take(10)
                 } else {
                     Log.e("HomeViewModel", "API Server Error: ${response.code()}")

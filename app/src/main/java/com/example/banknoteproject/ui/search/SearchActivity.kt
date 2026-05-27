@@ -14,6 +14,7 @@ import com.example.banknoteproject.data.domain.entities.BanknoteItem
 import com.example.banknoteproject.databinding.ActivitySearchBinding
 import com.example.banknoteproject.ui.detail.DetailActivity
 import com.example.banknoteproject.ui.search.adapter.SearchAdapter
+import com.example.banknoteproject.utils.AppConstants
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,9 +52,12 @@ class SearchActivity : AppCompatActivity() {
                         val totalCount = layoutManager.itemCount
                         val firstItemPos = layoutManager.findFirstVisibleItemPosition()
 
-                        if ((visibleItemCount + firstItemPos) >= totalCount) {
-                            if (binding.searchView.query.isNullOrBlank()) {
+                        if ((visibleItemCount + firstItemPos + 5) >= totalCount) {
+                            val currentQuery = binding.searchView.query.toString()
+                            if (currentQuery.isBlank()) {
                                 viewModel.getAllData(isRefresh = false)
+                            } else {
+                                viewModel.searchItems(currentQuery, isLoadMore = true)
                             }
                         }
                     }
@@ -106,7 +110,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun itemClickHandle(item: BanknoteItem) {
         val intent = Intent(this, DetailActivity::class.java).apply {
-            putExtra("EXTRA_DATA", item)
+            putExtra(AppConstants.EXTRA_DATA, item)
         }
         startActivity(intent)
     }

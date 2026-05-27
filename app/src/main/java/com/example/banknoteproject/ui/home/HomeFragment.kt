@@ -16,6 +16,7 @@ import com.example.banknoteproject.ui.detail.DetailActivity
 import com.example.banknoteproject.ui.home.adapter.RandomItemAdapter
 import com.example.banknoteproject.ui.home.adapter.RecentItemAdapter
 import com.example.banknoteproject.ui.search.SearchActivity
+import com.example.banknoteproject.utils.AppConstants
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.jvm.java
@@ -67,7 +68,7 @@ class HomeFragment : Fragment() {
             adapter = randomItemAdapter
         }
         observeData()
-        viewModel.getRecentData()
+        viewModel.getHomeData()
     }
 
     private fun initListener() {
@@ -98,7 +99,7 @@ class HomeFragment : Fragment() {
 
     private fun itemClickHandle(item: BanknoteItem) {
         val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-            putExtra("EXTRA_DATA", item)
+            putExtra(AppConstants.EXTRA_DATA, item)
         }
         startActivity(intent)
     }

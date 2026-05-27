@@ -33,7 +33,7 @@
         android:background="@color/white"
         app:itemActiveIndicatorStyle="@style/TransparentActiveIndicator"
         app:itemIconTint="@color/nav_item_color"
-        app:itemPaddingTop="10dp"
+        app:itemPaddingTop="20dp"
         app:itemTextAppearanceActive="@style/BottomNavTextStyle"
         app:itemTextAppearanceInactive="@style/BottomNavTextStyle"
         app:itemTextColor="@color/nav_item_color"

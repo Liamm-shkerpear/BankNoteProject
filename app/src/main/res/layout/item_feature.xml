@@ -11,13 +11,13 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/be_vietnam_pro_medium"
-        android:textFontWeight="500"
         android:textColor="@color/teal_dark"
+        android:textFontWeight="500"
         android:textSize="12sp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Name"
-        tools:targetApi="28" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="28"
+        tools:text="Name" />
 
     <TextView
         android:id="@+id/tvFeatureValue"
@@ -25,13 +25,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/be_vietnam_pro_medium"
-        android:textFontWeight="500"
         android:textColor="#1A202C"
+        android:textFontWeight="500"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvFeatureTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Australian EURO Cent 3355 .trutrali EURO Cent 3355 . 2018-2022"
-        tools:targetApi="28" />
+        app:layout_constraintStart_toEndOf="@+id/tvFeatureTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="28"
+        tools:text="Australian EURO Cent 3355 .trutrali EURO Cent 3355 . 2018-2022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

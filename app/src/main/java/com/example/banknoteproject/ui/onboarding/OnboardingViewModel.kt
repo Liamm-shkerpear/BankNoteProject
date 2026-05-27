@@ -9,15 +9,10 @@ class OnboardingViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(OnboardingClickState())
     val uiState = _uiState.asStateFlow()
 
-    fun markStepOneAnswered() {
-        _uiState.value = _uiState.value.copy(isStepOneClick = true)
+    fun markStepAnswered() {
+        _uiState.value = _uiState.value.copy(isClick = true)
     }
-
-    fun markStepTwoAnswered() {
-        _uiState.value = _uiState.value.copy(isStepTwoClick = true)
-    }
-
-    fun markStepThreeAnswered() {
-        _uiState.value = _uiState.value.copy(isStepThreeClick = true)
+    fun resetClickState() {
+        _uiState.value = _uiState.value.copy(isClick = false)
     }
 }

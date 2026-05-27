@@ -27,7 +27,7 @@ class RecentItemAdapter(
             val image = item.images ?: emptyList()
             if (image.isNotEmpty()) {
                 Glide.with(binding.root.context)
-                    .load(image[0])
+                    .load(image.getOrNull(0) ?: backupImage)
                     .error(backupImage)
                     .into(binding.ivFront)
             } else {
@@ -35,7 +35,7 @@ class RecentItemAdapter(
             }
             if (image.isNotEmpty()) {
                 Glide.with(binding.root.context)
-                    .load(image[1])
+                    .load(image.getOrNull(1) ?: backupImage)
                     .error(backupImage)
                     .into(binding.ivBack)
             } else {

@@ -9,7 +9,7 @@
         <item name="editTextColor">@color/teal_dark</item>
         <item name="android:textColorHint">#7337767B</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:fontWeight">500</item>
+        <item name="android:fontWeight" tools:targetApi="26">500</item>
         <item name="fontFamily">@font/be_vietnam_pro_medium</item>
     </style>
 

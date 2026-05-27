@@ -36,19 +36,19 @@ class StepTwoFragment : Fragment() {
     private fun initClickListener() {
         binding.clBanknote.setOnClickListener {
             updateUI(binding.clBanknote)
-            viewModel.markStepTwoAnswered()
+            viewModel.markStepAnswered()
         }
         binding.clCoin.setOnClickListener {
             updateUI(binding.clCoin)
-            viewModel.markStepTwoAnswered()
+            viewModel.markStepAnswered()
         }
         binding.clCheck.setOnClickListener {
             updateUI(binding.clCheck)
-            viewModel.markStepTwoAnswered()
+            viewModel.markStepAnswered()
         }
         binding.clLearn.setOnClickListener {
             updateUI(binding.clLearn)
-            viewModel.markStepTwoAnswered()
+            viewModel.markStepAnswered()
         }
     }
 

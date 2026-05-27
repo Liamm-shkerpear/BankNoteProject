@@ -36,19 +36,19 @@ class StepThreeFragment : Fragment() {
     private fun initClickListener() {
         binding.clSimple.setOnClickListener {
             updateUI(binding.clSimple)
-            viewModel.markStepThreeAnswered()
+            viewModel.markStepAnswered()
         }
         binding.clDetail.setOnClickListener {
             updateUI(binding.clDetail)
-            viewModel.markStepThreeAnswered()
+            viewModel.markStepAnswered()
         }
         binding.clValue.setOnClickListener {
             updateUI(binding.clValue)
-            viewModel.markStepThreeAnswered()
+            viewModel.markStepAnswered()
         }
         binding.clFocus.setOnClickListener {
             updateUI(binding.clFocus)
-            viewModel.markStepThreeAnswered()
+            viewModel.markStepAnswered()
         }
 
     }

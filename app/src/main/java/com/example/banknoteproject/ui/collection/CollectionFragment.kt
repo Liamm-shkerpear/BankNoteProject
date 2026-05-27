@@ -16,6 +16,7 @@ import com.example.banknoteproject.data.domain.entities.BanknoteItem
 import com.example.banknoteproject.databinding.FragmentCollectionBinding
 import com.example.banknoteproject.ui.collection.adapter.CollectionAdapter
 import com.example.banknoteproject.ui.detail.DetailActivity
+import com.example.banknoteproject.utils.AppConstants
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -87,7 +88,7 @@ class CollectionFragment: Fragment() {
 
     private fun itemClickHandle(item: BanknoteItem) {
         val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-            putExtra("EXTRA_DATA", item)
+            putExtra(AppConstants.EXTRA_DATA, item)
         }
         startActivity(intent)
     }

@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface BanknoteApi {
     @GET("banknotes")
-    suspend fun getRecentItems(
+    suspend fun getHomeItems(
         @Query("page") page: Int = 0,
         @Query("debug") debug: Boolean = true
     ): Response<BanknoteResponse>
@@ -30,7 +30,7 @@ interface BanknoteApi {
     @GET("banknotes-search")
     suspend fun searchItems(
         @Query("title") title: String,
-        @Query("page") page: Int = 0,
+        @Query("page") page: Int,
         @Query("debug") debug: Boolean = true
     ): Response<BanknoteResponse>
 }
