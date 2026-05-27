@@ -81,7 +81,7 @@
             android:fontFamily="@font/be_vietnam_pro_semibold"
             android:paddingHorizontal="12dp"
             android:paddingVertical="4dp"
-            android:textColor="#1A202C"
+            android:textColor="@color/black"
             android:textFontWeight="600"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

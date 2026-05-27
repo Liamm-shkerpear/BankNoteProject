@@ -32,7 +32,7 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
         app:layout_constraintTop_toBottomOf="@+id/tvSearchTitle"
-        app:strokeColor="#85FFFFFF"
+        app:strokeColor="@color/white_52"
         app:strokeWidth="1dp">
 
         <androidx.appcompat.widget.SearchView
