@@ -5,7 +5,7 @@ object AppConstants {
     const val PROGRESS = "progress"
     const val APP_PREFERENCES = "AppPreferences"
     const val IS_COMPLETED = "isCompleted"
-    const val SPLASH_DURATION = 3000L
+    const val SPLASH_DURATION = 7000L
     const val EXTRA_DATA = "EXTRA_DATA"
     const val APP_DATABASE = "app_database"
 }
